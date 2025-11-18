@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\UserController;
 use App\Jobs\TesteFila;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,10 @@ Route::post('/login', [UserController::class, 'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['user.type:admin'])->group(function () {
         Route::apiResource('/companies', CompanyController::class);
+    });
+
+     Route::middleware(['user.type:manager,admin,teacher, student'])->group(function () {
+        Route::apiResource('/project', ProjectController::class);
     });
 
     Route::middleware(['user.type:manager,admin'])->group(function () {
