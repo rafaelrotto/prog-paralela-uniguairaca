@@ -11,9 +11,9 @@ class CreateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->user()->type != 'admin' && $this->input('type') == 'admin') {
-            return false;
-        }
+        // if (auth()->user()->type != 'admin' && $this->input('type') == 'admin') {
+        //     return false;
+        // }
 
         return true;
     }
