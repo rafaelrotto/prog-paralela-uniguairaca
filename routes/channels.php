@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Broadcast;
 
-Broadcast::channel('user.csv', function() {
+/*
+Broadcast::channel('channel.name', function() {
     return true;
 });
+*/

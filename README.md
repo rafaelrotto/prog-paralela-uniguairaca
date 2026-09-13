@@ -90,6 +90,27 @@ docker exec -it laravel_app php artisan migrate
 docker exec -it laravel_app php artisan db:seed --class=UsersTableSeeder
 ```
 
+## 📊 Horizon (monitor de filas)
+
+O worker de filas roda via [Laravel Horizon](https://laravel.com/docs/horizon) no container `horizon` (sobe automaticamente com `docker compose up`). O dashboard fica disponível em `http://localhost:8010/horizon`.
+
+## 🌐 ngrok (expor a aplicação publicamente)
+
+O container `ngrok` **não sobe automaticamente** junto com os demais (usa `profiles`). Para usá-lo:
+
+1. Preencha no `.env` o `NGROK_AUTHTOKEN` (https://dashboard.ngrok.com/get-started/your-authtoken) e o `NGROK_DOMAIN` (domínio reservado, ex: `seu-dominio.ngrok-free.app`).
+2. Suba o serviço explicitamente:
+
+```bash
+docker compose --profile ngrok up -d ngrok
+```
+
+Para derrubar apenas ele:
+
+```bash
+docker compose --profile ngrok down ngrok
+```
+
 ### Comandos úteis
 
 ## Criar model com migration
