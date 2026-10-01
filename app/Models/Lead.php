@@ -21,4 +21,9 @@ class Lead extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function customFields()
+    {
+        return $this->belongsToMany(CustomField::class);
+    }
 }

@@ -10,4 +10,9 @@ class CustomField extends Model
         'segment',
         'interest'
     ];
+
+    public function leads()
+    {
+        return $this->belongsToMany(Lead::class);
+    }
 }
