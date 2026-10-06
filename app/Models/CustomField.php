@@ -13,6 +13,6 @@ class CustomField extends Model
 
     public function leads()
     {
-        return $this->belongsToMany(Lead::class);
+        return $this->belongsToMany(Lead::class, 'lead_custom_field', 'custom_field_id');
     }
 }

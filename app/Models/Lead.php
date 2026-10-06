@@ -24,6 +24,6 @@ class Lead extends Model
 
     public function customFields()
     {
-        return $this->belongsToMany(CustomField::class);
+        return $this->belongsToMany(CustomField::class, 'lead_custom_field', 'lead_id');
     }
 }
