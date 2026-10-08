@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Jobs\SaveLeadDataJob;
 use App\Models\Company;
 use App\Models\CustomField;
 use App\Models\Lead;
@@ -44,7 +45,7 @@ class WebhookService
 
         Log::info('Usuário criado no banco de dados: ' . json_encode($user->toArray()));
 
-        $lead = $this->findOrCreateLead($data['data']['lead']);
+        SaveLeadDataJob::dispatch($data['data']['lead']);
     }
 
     private function findOrCreateUser(array $user)
@@ -71,7 +72,7 @@ class WebhookService
         return true;
     }
 
-    private function findOrCreateLead(array $lead)
+    public function findOrCreateLead(array $lead)
     {
         $createdLead = Lead::query()->orWhere(function ($query) use ($lead) {
             $query->where('phone', $lead['phone'])

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\WebhookService;
+use App\Jobs\ProcessLeadData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,7 @@ class WebhookController extends Controller
     {
         Log::info('Informações do webhook recebidas no controller' . json_encode($request->all()));
 
-        $this->service->handle($request->all());
+        ProcessLeadData::dispatch($request->all());
 
         return response()->json(['message' => 'Tudo certo por aqui!'], 202);
     }
